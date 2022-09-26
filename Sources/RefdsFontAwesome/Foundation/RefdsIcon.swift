@@ -19,7 +19,8 @@ public struct RefdsIcon: Identifiable, Decodable, Comparable {
 
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        label = try values.decodeIfPresent(RefdsIconLabel.self, forKey: .label) ?? .none
+        let labelString = try values.decodeIfPresent(String.self, forKey: .label) ?? "none"
+        label = RefdsIconLabel(rawValue: labelString) ?? .none
         unicode = try values.decode(String.self, forKey: .unicode)
         styles = try values.decode([RefdsIconStyle].self, forKey: .styles)
         
