@@ -26,6 +26,9 @@ let package = Package(
                 .copy("Resource/Font-Awesome-6-Pro-Solid-900.otf"),
                 .copy("Resource/Font-Awesome-6-Pro-Thin-100.otf"),
                 .copy("Resource/icons.json")
-            ])
+            ]),
+        .testTarget(
+            name: "FontAwesomeTests",
+            dependencies: ["RefdsFontAwesome"])
     ]
 )

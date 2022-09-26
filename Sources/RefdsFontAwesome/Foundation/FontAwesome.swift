@@ -13,7 +13,7 @@ public class FontAwesome {
     }
     
     public func icon(byName name: RefdsIconLabel) -> RefdsIcon? {
-        return store[name.rawValue.lowercased()]
+        return store[name.rawValue]
     }
     
     public func search(query: String) -> [RefdsIcon] {

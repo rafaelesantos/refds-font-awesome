@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
+import RefdsFontAwesome
 
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            RefdsFontAwesome(iconName: .shop, size: 50)
+        }
+        .task {
+            //print(FontAwesome.shared.store[RefdsIconLabel.shop.rawValue])
         }
         .padding()
     }

@@ -11,6 +11,7 @@
 		77E314AF28E124A200F70EDC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E314AE28E124A200F70EDC /* ContentView.swift */; };
 		77E314B128E124A400F70EDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77E314B028E124A400F70EDC /* Assets.xcassets */; };
 		77E314B528E124A400F70EDC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77E314B428E124A400F70EDC /* Preview Assets.xcassets */; };
+		77E314BD28E124E600F70EDC /* RefdsFontAwesome in Frameworks */ = {isa = PBXBuildFile; productRef = 77E314BC28E124E600F70EDC /* RefdsFontAwesome */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77E314BD28E124E600F70EDC /* RefdsFontAwesome in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +87,9 @@
 			dependencies = (
 			);
 			name = Example;
+			packageProductDependencies = (
+				77E314BC28E124E600F70EDC /* RefdsFontAwesome */,
+			);
 			productName = Example;
 			productReference = 77E314A928E124A200F70EDC /* Example.app */;
 			productType = "com.apple.product-type.application";
@@ -113,6 +118,9 @@
 				Base,
 			);
 			mainGroup = 77E314A028E124A200F70EDC;
+			packageReferences = (
+				77E314BB28E124E600F70EDC /* XCRemoteSwiftPackageReference "refds-font-awesome" */,
+			);
 			productRefGroup = 77E314AA28E124A200F70EDC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -350,6 +358,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		77E314BB28E124E600F70EDC /* XCRemoteSwiftPackageReference "refds-font-awesome" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rafaelesantos/refds-font-awesome";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		77E314BC28E124E600F70EDC /* RefdsFontAwesome */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77E314BB28E124E600F70EDC /* XCRemoteSwiftPackageReference "refds-font-awesome" */;
+			productName = RefdsFontAwesome;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 77E314A128E124A200F70EDC /* Project object */;
 }

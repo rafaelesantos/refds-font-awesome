@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "refds-font-awesome",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rafaelesantos/refds-font-awesome",
+      "state" : {
+        "branch" : "main",
+        "revision" : "7f925fe11c48e131184a68c8a06b49c05568d5b5"
+      }
+    }
+  ],
+  "version" : 2
+}
