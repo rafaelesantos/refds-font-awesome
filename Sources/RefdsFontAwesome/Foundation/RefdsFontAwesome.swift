@@ -7,10 +7,6 @@ public struct RefdsFontAwesome: View {
     var style: RefdsIconStyle
     var color: Color
     
-    private var weight: Font.Weight {
-        return style.weight
-    }
-    
     public init(iconName: RefdsIconLabel, size: CGFloat, style: RefdsIconStyle? = nil, color: Color = Color(UIColor.label)) {
         self.size = size
         self.style = style ?? .regular
@@ -37,7 +33,7 @@ public struct RefdsFontAwesome: View {
     
     public var body: some View {
         Text(icon.unicodeString)
-            .font(.refds(size: size, weight: weight, style: style))
+            .font(.refds(size: size, style: style))
             .foregroundColor(color)
     }
 }

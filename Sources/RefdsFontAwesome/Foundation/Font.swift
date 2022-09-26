@@ -13,16 +13,16 @@ public extension Font {
         .duotone: Bundle.current.url(forResource: "Font-Awesome-6-Pro-Duotone-Solid-900.otf", withExtension: nil),
     ]
 
-    static func refds(size: CGFloat, weight: Weight = .regular, style: RefdsIconStyle) -> Font {
+    static func refds(size: CGFloat, style: RefdsIconStyle) -> Font {
         if refdsFontNames.isEmpty {
             Font.registerRefdsFonts()
-            return refds(size: size, weight: weight, style: style)
+            return refds(size: size, style: style)
         }
         guard let fontName = refdsFontNames[style] else {
-            assertionFailure("Unsupported font weight")
-            return nonScalingSystemFont(size: size, weight: weight)
+            assertionFailure("Unsupported font style")
+            return nonScalingSystemFont(size: size)
         }
-        return .custom(fontName, size: size).weight(weight)
+        return .custom(fontName, size: size)
     }
 
     static func registerRefdsFonts() {
@@ -48,7 +48,7 @@ public extension Font {
         return font
     }
 
-    private static func nonScalingSystemFont(size: CGFloat, weight: Font.Weight) -> Font {
-        .system(size: size, weight: weight)
+    private static func nonScalingSystemFont(size: CGFloat) -> Font {
+        .system(size: size)
     }
 }
