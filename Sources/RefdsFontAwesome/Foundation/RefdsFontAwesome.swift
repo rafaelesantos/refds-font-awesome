@@ -32,39 +32,8 @@ public struct RefdsFontAwesome: View {
     }
     
     public var body: some View {
-        if style == .duotone {
-            Image(uiImage: fontAwesome(icon: icon, style: .duotone, textColor: color, size: CGSize(width: size, height: size)))
-        } else {
-            Text(icon.unicodeString)
-                .font(.refds(size: size, style: style))
-                .foregroundColor(color)
-        }
-    }
-    
-    func fontAwesome(icon: RefdsIcon, style: RefdsIconStyle = .regular, textColor: Color, size: CGSize, backgroundColor: Color = .clear, borderWidth: CGFloat = 0, borderColor: UIColor = UIColor.clear) -> UIImage {
-        var size = size
-        if size.width <= 0 { size.width = 1 }
-        if size.height <= 0 { size.height = 1 }
-        
-        let paragraph = NSMutableParagraphStyle()
-        paragraph.alignment = NSTextAlignment.center
-        
-        let fontSize = min(size.width / 1.28571429, size.height)
-        let strokeWidth: CGFloat = fontSize == 0 ? 0 : (-100 * borderWidth / fontSize)
-        
-        let attributedString = NSAttributedString(string: icon.unicodeString, attributes: [
-            NSAttributedString.Key.font: Font.custom(icon.unicodeString, size: fontSize),
-            NSAttributedString.Key.foregroundColor: textColor,
-            NSAttributedString.Key.backgroundColor: backgroundColor,
-            NSAttributedString.Key.paragraphStyle: paragraph,
-            NSAttributedString.Key.strokeWidth: strokeWidth,
-            NSAttributedString.Key.strokeColor: borderColor
-        ])
-        
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        attributedString.draw(in: CGRect(x: 0, y: (size.height - fontSize) / 2, width: size.width, height: fontSize))
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image!
+        Text(icon.unicodeString)
+            .font(.refds(size: size, style: style))
+            .foregroundColor(color)
     }
 }

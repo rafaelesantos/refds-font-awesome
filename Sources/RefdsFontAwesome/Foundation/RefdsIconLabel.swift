@@ -1,6 +1,6 @@
 import Foundation
 
-public enum RefdsIconLabel: String, Codable {
+public enum RefdsIconLabel: String, Codable, CaseIterable {
     case none = "none"
     case _1 = "1"
     case _2 = "2"
