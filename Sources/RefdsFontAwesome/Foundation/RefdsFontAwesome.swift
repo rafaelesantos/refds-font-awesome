@@ -5,15 +5,17 @@ public struct RefdsFontAwesome: View {
     private var icon: RefdsIcon
     var size: CGFloat
     var style: RefdsIconStyle
+    var color: Color
     
     private var weight: Font.Weight {
         return style.weight
     }
     
-    public init(iconName: RefdsIconLabel, size: CGFloat, style: RefdsIconStyle? = nil) {
+    public init(iconName: RefdsIconLabel, size: CGFloat, style: RefdsIconStyle? = nil, color: Color = Color(UIColor.label)) {
         self.size = size
         self.style = style ?? .regular
         self.iconName = iconName
+        self.color = color
         
         if let icon = FontAwesome.shared.icon(byName: iconName) {
             self.icon = icon
@@ -36,5 +38,6 @@ public struct RefdsFontAwesome: View {
     public var body: some View {
         Text(icon.unicodeString)
             .font(.refds(size: size, weight: weight, style: style))
+            .foregroundColor(color)
     }
 }
