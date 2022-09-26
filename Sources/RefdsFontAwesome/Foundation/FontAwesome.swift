@@ -5,7 +5,7 @@ public class FontAwesome {
     public private(set) var store: [String: RefdsIcon]
     
     init() {
-        let fileURL = Bundle.main.url(forResource: "icons", withExtension: "json")!
+        let fileURL = Bundle.current.url(forResource: "icons.json", withExtension: nil)!
         let jsonString = try! String(contentsOf: fileURL, encoding: .utf8)
         let jsonData = jsonString.data(using: .utf8)!
         self.store = try! JSONDecoder().decode([String: RefdsIcon].self, from: jsonData)
@@ -16,7 +16,8 @@ public class FontAwesome {
         return store[name.rawValue.lowercased()]
     }
     
-    public func search(query: String) -> [String: RefdsIcon] {
+    public func search(query: String) -> [RefdsIcon] {
+        let query = query.lowercased()
         let filtered = store.filter() {
             if $0.key.contains(query) {
                 return true
@@ -27,6 +28,6 @@ public class FontAwesome {
                 return false
             }
         }
-        return filtered
+        return filtered.values.map({ $0 })
     }
 }

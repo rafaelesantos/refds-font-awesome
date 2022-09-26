@@ -35,7 +35,7 @@ public struct RefdsFontAwesome: View {
     
     public var body: some View {
         Text(icon.unicodeString)
-            .font(Font.custom("Font-Awesome-6-Pro", size: size))
+            .font(Font.custom(icon.collection.rawValue, size: size))
             .fontWeight(weight)
     }
 }
