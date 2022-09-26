@@ -1,14 +1,13 @@
 import Foundation
 
 public struct RefdsIcon: Identifiable, Decodable, Comparable {
-    public var id: String?
+    public var id: String
     public var label: RefdsIconLabel
-    public var unicode: String
     public var styles: [RefdsIconStyle]
     public var searchTerms: [String]
     
     var unicodeString: String {
-        let rawMutable = NSMutableString(string: "\\u\(self.unicode)")
+        let rawMutable = NSMutableString(string: "\\u\(id)")
         CFStringTransform(rawMutable, nil, "Any-Hex/Java" as NSString, true)
         return rawMutable as String
     }
@@ -21,20 +20,16 @@ public struct RefdsIcon: Identifiable, Decodable, Comparable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         let labelString = try values.decodeIfPresent(String.self, forKey: .label) ?? "none"
         label = RefdsIconLabel(rawValue: labelString) ?? .none
-        unicode = try values.decode(String.self, forKey: .unicode)
+        id = try values.decode(String.self, forKey: .id)
         styles = try values.decode([RefdsIconStyle].self, forKey: .styles)
         
         let search = try values.nestedContainer(keyedBy: SearchKeys.self, forKey: .search)
-        let rawSearchTerms = try search.decode([RawSearchTerm].self, forKey: .terms)
-        searchTerms = [String]()
-        for term in rawSearchTerms {
-            searchTerms.append(term.toString())
-        }
+        searchTerms = try search.decodeIfPresent([String].self, forKey: .terms) ?? []
     }
     
     public enum CodingKeys: String, CodingKey {
         case label
-        case unicode
+        case id = "unicode"
         case styles
         case search
     }
@@ -69,10 +64,10 @@ public struct RefdsIcon: Identifiable, Decodable, Comparable {
     }
     
     public static func < (lhs: RefdsIcon, rhs: RefdsIcon) -> Bool {
-        return lhs.id ?? lhs.label.rawValue < lhs.id ?? rhs.label.rawValue
+        return lhs.id < lhs.id
     }
     
     public static func == (lhs: RefdsIcon, rhs: RefdsIcon) -> Bool {
-        return lhs.id ?? lhs.label.rawValue == lhs.id ?? rhs.label.rawValue
+        return lhs.id == lhs.id
     }
 }

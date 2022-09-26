@@ -6,6 +6,7 @@ public enum RefdsIconStyle: String, Codable {
     case solid
     case brands
     case duotone
+    case thin
     
     var weight: Font.Weight {
         switch self {
