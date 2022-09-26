@@ -10,8 +10,6 @@ public enum RefdsIconStyle: String, Codable {
     
     var weight: Font.Weight {
         switch self {
-        case .light: return .light
-        case .solid, .duotone: return .heavy
         default: return .regular
         }
     }

@@ -12,10 +12,6 @@ public struct RefdsIcon: Identifiable, Decodable, Comparable {
         CFStringTransform(rawMutable, nil, "Any-Hex/Java" as NSString, true)
         return rawMutable as String
     }
-    
-    var collection: RefdsCollection {
-        return styles.contains(.brands) ? .brands : .pro
-    }
 
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
