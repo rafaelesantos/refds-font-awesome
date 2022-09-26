@@ -1,13 +1,14 @@
 import Foundation
 
 public struct RefdsIcon: Identifiable, Decodable, Comparable {
-    public var id: String
+    public var id: String?
     public var label: RefdsIconLabel
     public var styles: [RefdsIconStyle]
+    public var unicode: String
     public var searchTerms: [String]
     
     var unicodeString: String {
-        let rawMutable = NSMutableString(string: "\\u\(id)")
+        let rawMutable = NSMutableString(string: "\\u\(unicode)")
         CFStringTransform(rawMutable, nil, "Any-Hex/Java" as NSString, true)
         return rawMutable as String
     }
@@ -20,7 +21,7 @@ public struct RefdsIcon: Identifiable, Decodable, Comparable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         let labelString = try values.decodeIfPresent(String.self, forKey: .label) ?? "none"
         label = RefdsIconLabel(rawValue: labelString) ?? .none
-        id = try values.decode(String.self, forKey: .id)
+        unicode = try values.decode(String.self, forKey: .unicode)
         styles = try values.decode([RefdsIconStyle].self, forKey: .styles)
         
         let search = try values.nestedContainer(keyedBy: SearchKeys.self, forKey: .search)
@@ -29,7 +30,7 @@ public struct RefdsIcon: Identifiable, Decodable, Comparable {
     
     public enum CodingKeys: String, CodingKey {
         case label
-        case id = "unicode"
+        case unicode
         case styles
         case search
     }
@@ -64,10 +65,10 @@ public struct RefdsIcon: Identifiable, Decodable, Comparable {
     }
     
     public static func < (lhs: RefdsIcon, rhs: RefdsIcon) -> Bool {
-        return lhs.id < lhs.id
+        return lhs.unicode < lhs.unicode
     }
     
     public static func == (lhs: RefdsIcon, rhs: RefdsIcon) -> Bool {
-        return lhs.id == lhs.id
+        return lhs.unicode == lhs.unicode
     }
 }
